@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Acme Orders Dashboard — ignore me noise</title>
+  <style>
+    body { font-family: Arial; background: #111; color: #eee; }
+    .ads { display:block; height:200px; }
+    .cookie { position:fixed; bottom:0; }
+    nav a { margin: 8px; }
+  </style>
+  <script>
+    window.__TRACKING = { user: "secret", session: "abc123" };
+    document.cookie = "session=abc123";
+    console.log("huge analytics payload", new Array(500).fill("x").join(""));
+  </script>
+  <script src="https://cdn.example.com/tracker.js"></script>
+  <link rel="stylesheet" href="/static/app.css"/>
+</head>
+<body>
+  <header><nav role="navigation">
+    <a href="/">Home</a><a href="/pricing">Pricing</a><a href="/blog">Blog</a>
+  </nav></header>
+  <aside class="ads">BUY NOW LIMITED OFFER CLICK HERE SUBSCRIBE NEWSLETTER</aside>
+  <div id="cookie-banner" class="cookie">We use cookies. Accept all.</div>
+  <main>
+    <h1>Order Search Results</h1>
+    <p>Query: status=open&amp;limit=50 — returned 50 rows.</p>
+    <article>
+      <h2>Summary</h2>
+      <p>Total open orders: 50. Revenue at risk: $128,440.00. Oldest order age: 14 days.</p>
+      <p>Top customer: Globex Corp (12 open). Next SLA breach in 3h 20m.</p>
+    </article>
+    <div class="order-row" data-id="ORD-0001">
+      <h3>Order ORD-0001</h3>
+      <p>Customer: Customer 1 LLC</p>
+      <p>Status: open</p>
+      <p>Amount: $1017.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-1, FILLER-3</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(1);</script>
+      <style>.x1{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0002">
+      <h3>Order ORD-0002</h3>
+      <p>Customer: Customer 2 LLC</p>
+      <p>Status: open</p>
+      <p>Amount: $1034.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-2, FILLER-6</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(2);</script>
+      <style>.x2{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0003">
+      <h3>Order ORD-0003</h3>
+      <p>Customer: Customer 3 LLC</p>
+      <p>Status: pending</p>
+      <p>Amount: $1051.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-3, FILLER-9</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(3);</script>
+      <style>.x3{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0004">
+      <h3>Order ORD-0004</h3>
+      <p>Customer: Customer 4 LLC</p>
+      <p>Status: open</p>
+      <p>Amount: $1068.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-4, FILLER-12</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(4);</script>
+      <style>.x4{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0005">
+      <h3>Order ORD-0005</h3>
+      <p>Customer: Customer 5 LLC</p>
+      <p>Status: open</p>
+      <p>Amount: $1085.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-5, FILLER-15</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(5);</script>
+      <style>.x5{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0006">
+      <h3>Order ORD-0006</h3>
+      <p>Customer: Customer 6 LLC</p>
+      <p>Status: pending</p>
+      <p>Amount: $1102.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-6, FILLER-18</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(6);</script>
+      <style>.x6{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0007">
+      <h3>Order ORD-0007</h3>
+      <p>Customer: Customer 7 LLC</p>
+      <p>Status: open</p>
+      <p>Amount: $1119.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-7, FILLER-21</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(7);</script>
+      <style>.x7{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0008">
+      <h3>Order ORD-0008</h3>
+      <p>Customer: Customer 8 LLC</p>
+      <p>Status: open</p>
+      <p>Amount: $1136.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-8, FILLER-24</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(8);</script>
+      <style>.x8{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0009">
+      <h3>Order ORD-0009</h3>
+      <p>Customer: Customer 9 LLC</p>
+      <p>Status: pending</p>
+      <p>Amount: $1153.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-9, FILLER-27</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(9);</script>
+      <style>.x9{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0010">
+      <h3>Order ORD-0010</h3>
+      <p>Customer: Customer 10 LLC</p>
+      <p>Status: open</p>
+      <p>Amount: $1170.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-10, FILLER-30</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(10);</script>
+      <style>.x10{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0011">
+      <h3>Order ORD-0011</h3>
+      <p>Customer: Customer 11 LLC</p>
+      <p>Status: open</p>
+      <p>Amount: $1187.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-11, FILLER-33</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(11);</script>
+      <style>.x11{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0012">
+      <h3>Order ORD-0012</h3>
+      <p>Customer: Customer 12 LLC</p>
+      <p>Status: pending</p>
+      <p>Amount: $1204.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-12, FILLER-36</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(12);</script>
+      <style>.x12{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0013">
+      <h3>Order ORD-0013</h3>
+      <p>Customer: Customer 13 LLC</p>
+      <p>Status: open</p>
+      <p>Amount: $1221.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-13, FILLER-39</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(13);</script>
+      <style>.x13{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0014">
+      <h3>Order ORD-0014</h3>
+      <p>Customer: Customer 14 LLC</p>
+      <p>Status: open</p>
+      <p>Amount: $1238.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-14, FILLER-42</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(14);</script>
+      <style>.x14{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0015">
+      <h3>Order ORD-0015</h3>
+      <p>Customer: Customer 15 LLC</p>
+      <p>Status: pending</p>
+      <p>Amount: $1255.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-15, FILLER-45</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(15);</script>
+      <style>.x15{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0016">
+      <h3>Order ORD-0016</h3>
+      <p>Customer: Customer 16 LLC</p>
+      <p>Status: open</p>
+      <p>Amount: $1272.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-16, FILLER-48</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(16);</script>
+      <style>.x16{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0017">
+      <h3>Order ORD-0017</h3>
+      <p>Customer: Customer 17 LLC</p>
+      <p>Status: open</p>
+      <p>Amount: $1289.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-17, FILLER-51</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(17);</script>
+      <style>.x17{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0018">
+      <h3>Order ORD-0018</h3>
+      <p>Customer: Customer 18 LLC</p>
+      <p>Status: pending</p>
+      <p>Amount: $1306.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-18, FILLER-54</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(18);</script>
+      <style>.x18{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0019">
+      <h3>Order ORD-0019</h3>
+      <p>Customer: Customer 19 LLC</p>
+      <p>Status: open</p>
+      <p>Amount: $1323.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-19, FILLER-57</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(19);</script>
+      <style>.x19{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0020">
+      <h3>Order ORD-0020</h3>
+      <p>Customer: Customer 20 LLC</p>
+      <p>Status: open</p>
+      <p>Amount: $1340.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-20, FILLER-60</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(20);</script>
+      <style>.x20{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0021">
+      <h3>Order ORD-0021</h3>
+      <p>Customer: Customer 21 LLC</p>
+      <p>Status: pending</p>
+      <p>Amount: $1357.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-21, FILLER-63</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(21);</script>
+      <style>.x21{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0022">
+      <h3>Order ORD-0022</h3>
+      <p>Customer: Customer 22 LLC</p>
+      <p>Status: open</p>
+      <p>Amount: $1374.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-22, FILLER-66</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(22);</script>
+      <style>.x22{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0023">
+      <h3>Order ORD-0023</h3>
+      <p>Customer: Customer 23 LLC</p>
+      <p>Status: open</p>
+      <p>Amount: $1391.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-23, FILLER-69</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(23);</script>
+      <style>.x23{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0024">
+      <h3>Order ORD-0024</h3>
+      <p>Customer: Customer 24 LLC</p>
+      <p>Status: pending</p>
+      <p>Amount: $1408.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-24, FILLER-72</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(24);</script>
+      <style>.x24{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0025">
+      <h3>Order ORD-0025</h3>
+      <p>Customer: Customer 25 LLC</p>
+      <p>Status: open</p>
+      <p>Amount: $1425.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-25, FILLER-75</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(25);</script>
+      <style>.x25{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0026">
+      <h3>Order ORD-0026</h3>
+      <p>Customer: Customer 26 LLC</p>
+      <p>Status: open</p>
+      <p>Amount: $1442.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-26, FILLER-78</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(26);</script>
+      <style>.x26{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0027">
+      <h3>Order ORD-0027</h3>
+      <p>Customer: Customer 27 LLC</p>
+      <p>Status: pending</p>
+      <p>Amount: $1459.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-27, FILLER-81</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(27);</script>
+      <style>.x27{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0028">
+      <h3>Order ORD-0028</h3>
+      <p>Customer: Customer 28 LLC</p>
+      <p>Status: open</p>
+      <p>Amount: $1476.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-28, FILLER-84</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(28);</script>
+      <style>.x28{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0029">
+      <h3>Order ORD-0029</h3>
+      <p>Customer: Customer 29 LLC</p>
+      <p>Status: open</p>
+      <p>Amount: $1493.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-29, FILLER-87</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(29);</script>
+      <style>.x29{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0030">
+      <h3>Order ORD-0030</h3>
+      <p>Customer: Customer 30 LLC</p>
+      <p>Status: pending</p>
+      <p>Amount: $1510.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-30, FILLER-90</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(30);</script>
+      <style>.x30{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0031">
+      <h3>Order ORD-0031</h3>
+      <p>Customer: Customer 31 LLC</p>
+      <p>Status: open</p>
+      <p>Amount: $1527.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-31, FILLER-93</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(31);</script>
+      <style>.x31{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0032">
+      <h3>Order ORD-0032</h3>
+      <p>Customer: Customer 32 LLC</p>
+      <p>Status: open</p>
+      <p>Amount: $1544.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-32, FILLER-96</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(32);</script>
+      <style>.x32{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0033">
+      <h3>Order ORD-0033</h3>
+      <p>Customer: Customer 33 LLC</p>
+      <p>Status: pending</p>
+      <p>Amount: $1561.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-33, FILLER-99</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(33);</script>
+      <style>.x33{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0034">
+      <h3>Order ORD-0034</h3>
+      <p>Customer: Customer 34 LLC</p>
+      <p>Status: open</p>
+      <p>Amount: $1578.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-34, FILLER-102</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(34);</script>
+      <style>.x34{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0035">
+      <h3>Order ORD-0035</h3>
+      <p>Customer: Customer 35 LLC</p>
+      <p>Status: open</p>
+      <p>Amount: $1595.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-35, FILLER-105</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(35);</script>
+      <style>.x35{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0036">
+      <h3>Order ORD-0036</h3>
+      <p>Customer: Customer 36 LLC</p>
+      <p>Status: pending</p>
+      <p>Amount: $1612.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-36, FILLER-108</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(36);</script>
+      <style>.x36{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0037">
+      <h3>Order ORD-0037</h3>
+      <p>Customer: Customer 37 LLC</p>
+      <p>Status: open</p>
+      <p>Amount: $1629.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-37, FILLER-111</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(37);</script>
+      <style>.x37{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0038">
+      <h3>Order ORD-0038</h3>
+      <p>Customer: Customer 38 LLC</p>
+      <p>Status: open</p>
+      <p>Amount: $1646.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-38, FILLER-114</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(38);</script>
+      <style>.x38{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0039">
+      <h3>Order ORD-0039</h3>
+      <p>Customer: Customer 39 LLC</p>
+      <p>Status: pending</p>
+      <p>Amount: $1663.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-39, FILLER-117</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(39);</script>
+      <style>.x39{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0040">
+      <h3>Order ORD-0040</h3>
+      <p>Customer: Customer 40 LLC</p>
+      <p>Status: open</p>
+      <p>Amount: $1680.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-40, FILLER-120</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(40);</script>
+      <style>.x40{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0041">
+      <h3>Order ORD-0041</h3>
+      <p>Customer: Customer 41 LLC</p>
+      <p>Status: open</p>
+      <p>Amount: $1697.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-41, FILLER-123</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(41);</script>
+      <style>.x41{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0042">
+      <h3>Order ORD-0042</h3>
+      <p>Customer: Customer 42 LLC</p>
+      <p>Status: pending</p>
+      <p>Amount: $1714.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-42, FILLER-126</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(42);</script>
+      <style>.x42{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0043">
+      <h3>Order ORD-0043</h3>
+      <p>Customer: Customer 43 LLC</p>
+      <p>Status: open</p>
+      <p>Amount: $1731.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-43, FILLER-129</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(43);</script>
+      <style>.x43{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0044">
+      <h3>Order ORD-0044</h3>
+      <p>Customer: Customer 44 LLC</p>
+      <p>Status: open</p>
+      <p>Amount: $1748.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-44, FILLER-132</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(44);</script>
+      <style>.x44{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0045">
+      <h3>Order ORD-0045</h3>
+      <p>Customer: Customer 45 LLC</p>
+      <p>Status: pending</p>
+      <p>Amount: $1765.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-45, FILLER-135</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(45);</script>
+      <style>.x45{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0046">
+      <h3>Order ORD-0046</h3>
+      <p>Customer: Customer 46 LLC</p>
+      <p>Status: open</p>
+      <p>Amount: $1782.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-46, FILLER-138</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(46);</script>
+      <style>.x46{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0047">
+      <h3>Order ORD-0047</h3>
+      <p>Customer: Customer 47 LLC</p>
+      <p>Status: open</p>
+      <p>Amount: $1799.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-47, FILLER-141</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(47);</script>
+      <style>.x47{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0048">
+      <h3>Order ORD-0048</h3>
+      <p>Customer: Customer 48 LLC</p>
+      <p>Status: pending</p>
+      <p>Amount: $1816.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-48, FILLER-144</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(48);</script>
+      <style>.x48{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0049">
+      <h3>Order ORD-0049</h3>
+      <p>Customer: Customer 49 LLC</p>
+      <p>Status: open</p>
+      <p>Amount: $1833.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-49, FILLER-147</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(49);</script>
+      <style>.x49{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0050">
+      <h3>Order ORD-0050</h3>
+      <p>Customer: Customer 50 LLC</p>
+      <p>Status: open</p>
+      <p>Amount: $1850.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-50, FILLER-150</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(50);</script>
+      <style>.x50{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0051">
+      <h3>Order ORD-0051</h3>
+      <p>Customer: Customer 51 LLC</p>
+      <p>Status: pending</p>
+      <p>Amount: $1867.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-51, FILLER-153</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(51);</script>
+      <style>.x51{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0052">
+      <h3>Order ORD-0052</h3>
+      <p>Customer: Customer 52 LLC</p>
+      <p>Status: open</p>
+      <p>Amount: $1884.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-52, FILLER-156</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(52);</script>
+      <style>.x52{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0053">
+      <h3>Order ORD-0053</h3>
+      <p>Customer: Customer 53 LLC</p>
+      <p>Status: open</p>
+      <p>Amount: $1901.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-53, FILLER-159</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(53);</script>
+      <style>.x53{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0054">
+      <h3>Order ORD-0054</h3>
+      <p>Customer: Customer 54 LLC</p>
+      <p>Status: pending</p>
+      <p>Amount: $1918.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-54, FILLER-162</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(54);</script>
+      <style>.x54{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0055">
+      <h3>Order ORD-0055</h3>
+      <p>Customer: Customer 55 LLC</p>
+      <p>Status: open</p>
+      <p>Amount: $1935.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-55, FILLER-165</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(55);</script>
+      <style>.x55{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0056">
+      <h3>Order ORD-0056</h3>
+      <p>Customer: Customer 56 LLC</p>
+      <p>Status: open</p>
+      <p>Amount: $1952.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-56, FILLER-168</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(56);</script>
+      <style>.x56{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0057">
+      <h3>Order ORD-0057</h3>
+      <p>Customer: Customer 57 LLC</p>
+      <p>Status: pending</p>
+      <p>Amount: $1969.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-57, FILLER-171</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(57);</script>
+      <style>.x57{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0058">
+      <h3>Order ORD-0058</h3>
+      <p>Customer: Customer 58 LLC</p>
+      <p>Status: open</p>
+      <p>Amount: $1986.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-58, FILLER-174</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(58);</script>
+      <style>.x58{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0059">
+      <h3>Order ORD-0059</h3>
+      <p>Customer: Customer 59 LLC</p>
+      <p>Status: open</p>
+      <p>Amount: $2003.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-59, FILLER-177</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(59);</script>
+      <style>.x59{color:red}</style>
+    </div>
+
+    <div class="order-row" data-id="ORD-0060">
+      <h3>Order ORD-0060</h3>
+      <p>Customer: Customer 60 LLC</p>
+      <p>Status: pending</p>
+      <p>Amount: $2020.00</p>
+      <p>SKU list: WIDGET-A, WIDGET-B, PART-60, FILLER-180</p>
+      <p>Notes: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <script>void(60);</script>
+      <style>.x60{color:red}</style>
+    </div>
+
+    <section>
+      <h2>Operational alerts</h2>
+      <ul>
+        <li>Payment gateway latency p95 = 820ms</li>
+        <li>Warehouse B pick rate down 12% WoW</li>
+        <li>3 chargebacks pending review (ids CB-918, CB-922, CB-931)</li>
+      </ul>
+    </section>
+  </main>
+  <footer>
+    <p>Copyright Acme. Unsubscribe. Privacy. Terms. Careers.</p>
+  </footer>
+  <script>
+    // more noise
+    (function(){ var s=""; for (var i=0;i<2000;i++) s+="noise"+i+";"; window.__N=s; })();
+  </script>
+</body>
+</html>

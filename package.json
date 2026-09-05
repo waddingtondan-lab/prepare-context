@@ -1,0 +1,30 @@
+{
+  "name": "prepare-context",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Agent-native context scrubber + compressor with savings receipts",
+  "type": "module",
+  "workspaces": [
+    "packages/core",
+    "packages/sdk-ts",
+    "server",
+    "mcp"
+  ],
+  "scripts": {
+    "build": "npm run build -w @prepare-context/core && npm run build -w @prepare-context/sdk-ts && npm run build -w @prepare-context/server && npm run build -w @prepare-context/mcp",
+    "test": "npm run build -w @prepare-context/core && node --import tsx --test tests/*.test.ts",
+    "demo": "npm run build -w @prepare-context/core && npx tsx examples/demo.ts",
+    "dev": "npm run build -w @prepare-context/core && npm run dev -w @prepare-context/server",
+    "start": "npm run start -w @prepare-context/server",
+    "mcp": "npm run build -w @prepare-context/core && npm run start -w @prepare-context/mcp"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  },
+  "license": "MIT"
+}

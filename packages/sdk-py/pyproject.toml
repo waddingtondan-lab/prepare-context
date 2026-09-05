@@ -1,0 +1,18 @@
+[project]
+name = "prepare-context"
+version = "0.1.0"
+description = "Python client for Prepare Context (scrub + compress with savings receipts)"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.urls]
+Homepage = "https://prepare.plaintools.vip"
+Repository = "https://github.com/waddingtondan-lab/prepare-context"
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["prepare_context*"]

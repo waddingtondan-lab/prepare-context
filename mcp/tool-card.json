@@ -1,0 +1,50 @@
+{
+  "name": "prepare_context",
+  "description": "Use when tool/browser/API output is large or noisy, or conversation/history is too long, and you need a fixed token budget before the next model call. Returns a compressed packet plus tokens saved and estimated USD saved.",
+  "inputSchema": {
+    "type": "object",
+    "required": [
+      "raw",
+      "budget_tokens",
+      "mode"
+    ],
+    "properties": {
+      "raw": {
+        "type": "string",
+        "description": "Noisy tool/browser/API output or long history/docs text"
+      },
+      "budget_tokens": {
+        "type": "number",
+        "description": "Target max tokens for the returned packet"
+      },
+      "mode": {
+        "type": "string",
+        "enum": [
+          "tool",
+          "history",
+          "docs"
+        ]
+      },
+      "keep": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "JSON field names to keep when scrubbing"
+      },
+      "schema": {
+        "description": "Optional schema object or field list for structured keep"
+      },
+      "target_model": {
+        "type": "string",
+        "description": "Pricing hint: claude-sonnet | gpt-4o | generic",
+        "default": "generic"
+      }
+    }
+  },
+  "annotations": {
+    "title": "Prepare Context",
+    "api": "https://prepare.plaintools.vip/v1/prepare",
+    "docs": "https://github.com/waddingtondan-lab/prepare-context"
+  }
+}
