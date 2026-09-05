@@ -9,7 +9,7 @@
 | **Repo** | https://github.com/waddingtondan-lab/prepare-context |
 | **Local** | `http://127.0.0.1:8787` |
 
-> DNS/CNAME for `prepare.plaintools.vip` → hosting will be wired later. Product branding is **Plain Tools** / `prepare.plaintools.vip`. Plain org GitHub Pages sites stay marketing-only; this API lives under `waddingtondan-lab`.
+> Product branding is **Plain Tools** / `prepare.plaintools.vip`. Plain org GitHub Pages sites stay marketing-only; this API lives under `waddingtondan-lab`. See **Deploy** below for Render + DNS.
 
 ## Why agents call this
 
@@ -62,6 +62,21 @@ CORS is open for local demos. See [docs/API.md](docs/API.md).
 | `skill/SKILL.md` | Cursor-style skill card |
 | `examples/` | Fat HTML + demo + middleware snippet |
 
+
+## Deploy
+
+**Render (free web service)** — preferred for production:
+
+1. Connect this repo in [Render](https://render.com) (Blueprint uses `render.yaml`), or create a **Web Service** with:
+   - Build: `npm install --include=dev && npm run build`
+   - Start: `npm start`
+   - Health check: `/health`
+   - Env: `NODE_VERSION=20`, `HOST=0.0.0.0` (Render sets `PORT`)
+2. Custom domain: **prepare.plaintools.vip** → CNAME to the service `*.onrender.com` hostname.
+3. Porkbun DNS steps: [docs/DNS.md](docs/DNS.md).
+
+`Dockerfile` is included as a backup for Railway/Fly (`PORT=8787`, `HOST=0.0.0.0`, exposes 8787).
+
 ## MCP tool
 
 **Name:** `prepare_context`  
@@ -88,6 +103,7 @@ Not in MVP. Future x402/USDC + API-key credits — see [docs/PAYMENTS.md](docs/P
 - [API.md](docs/API.md)
 - [AGENTS.md](docs/AGENTS.md)
 - [PAYMENTS.md](docs/PAYMENTS.md)
+- [DNS.md](docs/DNS.md) — Porkbun CNAME for prepare.plaintools.vip
 
 ## License
 
