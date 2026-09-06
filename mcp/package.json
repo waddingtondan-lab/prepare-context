@@ -16,5 +16,6 @@
   "devDependencies": {
     "typescript": "^5.7.2",
     "@types/node": "^22.10.0"
-  }
+  },
+  "description": "MCP server for Prepare Context \u2014 use when tool/browser/API output is large or noisy, or history is too long; scrub + compress to a budget via prepare.plaintools.vip (tool: prepare_context)."
 }

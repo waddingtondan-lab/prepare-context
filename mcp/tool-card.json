@@ -1,6 +1,6 @@
 {
   "name": "prepare_context",
-  "description": "Use when tool/browser/API output is large or noisy, or conversation/history is too long, and you need a fixed token budget before the next model call. Returns a compressed packet plus tokens saved and estimated USD saved.",
+  "description": "Use when tool/browser/API output is large or noisy, or conversation/history is too long, and you need a fixed token budget before the next model call. Calls the live Prepare Context API and returns a compressed packet plus tokens saved and estimated USD saved. No API key for default heuristic.",
   "inputSchema": {
     "type": "object",
     "required": [
@@ -44,7 +44,11 @@
   },
   "annotations": {
     "title": "Prepare Context",
+    "homepage": "https://prepare.plaintools.vip",
     "api": "https://prepare.plaintools.vip/v1/prepare",
-    "docs": "https://github.com/waddingtondan-lab/prepare-context"
+    "health": "https://prepare.plaintools.vip/health",
+    "llms": "https://prepare.plaintools.vip/llms.txt",
+    "docs": "https://github.com/waddingtondan-lab/prepare-context/blob/main/docs/AGENTS.md",
+    "skill": "https://github.com/waddingtondan-lab/prepare-context/blob/main/skill/SKILL.md"
   }
 }

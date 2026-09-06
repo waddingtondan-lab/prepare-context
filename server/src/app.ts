@@ -1,6 +1,7 @@
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { prepare, TOKEN_ESTIMATOR, type PrepareMode, type PrepareRequest } from "@prepare-context/core";
+import { LANDING_HTML, LLMS_TXT, prefersHtml } from "./landing.js";
 
 export const app = new Hono();
 
@@ -13,13 +14,23 @@ app.use(
   })
 );
 
-app.get("/", (c) =>
-  c.json({
+app.get("/", (c) => {
+  if (prefersHtml(c.req.header("Accept"))) {
+    return c.html(LANDING_HTML);
+  }
+  return c.json({
     ok: true,
     service: "prepare-context",
     health: "/health",
     prepare: "/v1/prepare",
+    llms: "/llms.txt",
     public_base_url: "https://prepare.plaintools.vip",
+  });
+});
+
+app.get("/llms.txt", (c) =>
+  c.text(LLMS_TXT, 200, {
+    "Content-Type": "text/plain; charset=utf-8",
   })
 );
 

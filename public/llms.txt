@@ -1,0 +1,34 @@
+# Prepare Context
+
+> Agent-facing context scrubber + compressor with savings receipts (Plain Tools).
+
+Homepage: https://prepare.plaintools.vip
+Repository: https://github.com/waddingtondan-lab/prepare-context
+Skill: https://github.com/waddingtondan-lab/prepare-context/blob/main/skill/SKILL.md
+
+## When to use
+
+Use when tool/browser/API output is large or noisy, conversation/history is too long, or docs need to fit a fixed budget_tokens — before the next expensive model call. Returns a compressed packet plus tokens saved and estimated USD saved.
+
+Skip when input is already short/clean or you need lossless archival.
+
+## Endpoint
+
+POST https://prepare.plaintools.vip/v1/prepare
+Content-Type: application/json
+
+## Example
+
+curl -s https://prepare.plaintools.vip/v1/prepare \
+  -H 'Content-Type: application/json' \
+  -d '{"raw":"<html>…noisy dump…</html>","budget_tokens":800,"mode":"tool","target_model":"generic"}'
+
+Modes: tool | history | docs
+Auth: none required for default heuristic
+Health: GET https://prepare.plaintools.vip/health
+JSON index: GET / with Accept: application/json
+MCP tool: prepare_context (see mcp/tool-card.json)
+
+## Demo receipt (verified, not a customer claim)
+
+Fat HTML sample: 8932 → 800 tokens (~91% saved, ~$0.016 at generic $2/MTok).

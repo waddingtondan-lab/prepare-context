@@ -1,10 +1,9 @@
 # API
 
-**Production (Workers):** `https://prepare-context.<account>.workers.dev` (after wrangler)  
-**Production (planned custom):** `https://prepare.plaintools.vip`  
+**Production:** `https://prepare.plaintools.vip`  
 **Local:** `http://127.0.0.1:8787`  
 
-> Branding is Plain Tools. Custom domain attaches when DNS/zone is ready; workers.dev is the interim public API.
+> Branding is Plain Tools. Landing: `GET /` (HTML). Agents: `/llms.txt`. JSON index: `Accept: application/json`.
 
 ## `GET /health`
 Returns service metadata including `token_estimator`.

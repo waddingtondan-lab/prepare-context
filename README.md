@@ -5,12 +5,13 @@
 | | |
 |--|--|
 | **Brand** | Plain Tools |
-| **API (Workers)** | `https://prepare-context.<account>.workers.dev` (after wrangler) |
-| **API (planned custom)** | https://prepare.plaintools.vip |
+| **Live API + landing** | https://prepare.plaintools.vip |
+| **JSON index** | `GET /` with `Accept: application/json` |
+| **Agent summary** | https://prepare.plaintools.vip/llms.txt |
 | **Repo** | https://github.com/waddingtondan-lab/prepare-context |
 | **Local** | `http://127.0.0.1:8787` |
 
-> Product branding is **Plain Tools** / `prepare.plaintools.vip`. Production target is **Cloudflare Workers**; custom domain attaches when DNS/zone is ready. See **Deploy** below.
+Open https://prepare.plaintools.vip/ in a browser for the agent/builder landing page (example request, demo receipt, MCP). Agents should prefer `/llms.txt` or `Accept: application/json`.
 
 ## Why agents call this
 
@@ -24,14 +25,13 @@ No API key required for the MVP demo path (deterministic scrub + extractive comp
 
 ## Quick start
 
-```bash
-npm install
-npm run demo          # prints a savings receipt (tokens_in >> tokens_out)
-npm test
-npm run dev           # HTTP API on :8787
-```
+Live endpoint: `POST https://prepare.plaintools.vip/v1/prepare`
+
+Local: install workspace deps, run the demo script, tests, and `dev` server on :8787.
 
 Demo loads `examples/fat-sample.html`, scrubs scripts/styles, packs to a budget, and prints USD saved.
+
+**Verified demo receipt** (local fat HTML sample, not a customer case study): **8932 → 800 tokens** (~91% saved, ~$0.016 at generic $2/MTok).
 
 ## HTTP API
 
@@ -48,6 +48,8 @@ Demo loads `examples/fat-sample.html`, scrubs scripts/styles, packs to a budget,
 ```
 
 `GET /health` — liveness + token estimator info.
+`GET /llms.txt` — short machine-readable agent summary.
+`GET /` — HTML landing (browsers) or JSON service index (`Accept: application/json`).
 
 CORS is open for local demos. See [docs/API.md](docs/API.md).
 
@@ -56,30 +58,22 @@ CORS is open for local demos. See [docs/API.md](docs/API.md).
 | Path | Role |
 |------|------|
 | `packages/core` | Scrub + compress + tokens + pricing |
-| `server` | Hono HTTP API |
+| `server` | Hono HTTP API (+ Worker landing) |
 | `packages/sdk-ts` | `prepareContext(...)` |
 | `packages/sdk-py` | Python mirror client |
 | `mcp` | MCP tool `prepare_context` |
 | `skill/SKILL.md` | Cursor-style skill card |
 | `examples/` | Fat HTML + demo + middleware snippet |
 
-
 ## Deploy
 
-**Cloudflare Workers** — preferred for production:
+**Cloudflare Workers** — production on **prepare.plaintools.vip**. Build core, then `wrangler deploy`. See [docs/DNS.md](docs/DNS.md).
 
-1. `npm install` then `npx wrangler login` (or set `CLOUDFLARE_API_TOKEN`).
-2. Build core, then publish the Worker: `npm run build -w @prepare-context/core && npx wrangler deploy`.
-3. Interim URL: `https://prepare-context.<your-subdomain>.workers.dev` — verify with `GET /health`.
-4. Custom domain **prepare.plaintools.vip**: attach in Workers Custom Domains when the zone is on Cloudflare. If DNS stays on Porkbun, add only a `prepare` CNAME to the Workers target Cloudflare shows. See [docs/DNS.md](docs/DNS.md).
-
-Local Node API unchanged: `npm run dev` (Hono + `@hono/node-server` on `:8787`).
-
-**Render / Docker** (optional backups): `render.yaml` and `Dockerfile` still work (`HOST=0.0.0.0`, health `/health`).
+Local Node API: workspace `dev` script (Hono on `:8787`). Render/Docker backups remain in-repo.
 
 ## MCP tool
 
-**Name:** `prepare_context`  
+**Name:** `prepare_context`
 
 **Description:** Use when tool/browser/API output is large or noisy, or conversation/history is too long, and you need a fixed token budget before the next model call. Returns a compressed packet plus tokens saved and estimated USD saved.
 
@@ -103,7 +97,7 @@ Not in MVP. Future x402/USDC + API-key credits — see [docs/PAYMENTS.md](docs/P
 - [API.md](docs/API.md)
 - [AGENTS.md](docs/AGENTS.md)
 - [PAYMENTS.md](docs/PAYMENTS.md)
-- [DNS.md](docs/DNS.md) — Porkbun CNAME for prepare.plaintools.vip
+- [DNS.md](docs/DNS.md)
 
 ## License
 

@@ -1,11 +1,17 @@
 ---
 name: prepare-context
-description: Scrub noisy tool/browser/API output and compress context into a fixed token budget with a savings receipt before expensive model calls.
+description: >-
+  Use when tool/browser/API output is large or noisy, conversation/history is
+  too long, or docs need to fit a fixed budget_tokens before the next model
+  call — scrub noise, compress to budget, return a savings receipt.
 homepage: https://prepare.plaintools.vip
 repository: https://github.com/waddingtondan-lab/prepare-context
 ---
 
 # Prepare Context
+
+**Live API:** https://prepare.plaintools.vip
+**Landing:** https://prepare.plaintools.vip/ (HTML) · `Accept: application/json` for service index · `/llms.txt` for agents
 
 ## Use when
 - Tool, browser, or API output is large, HTML-heavy, or noisy
@@ -23,10 +29,8 @@ repository: https://github.com/waddingtondan-lab/prepare-context
 3. Feed `packet` into the next model call; log the receipt fields
 
 ## MCP
-Tool name: `prepare_context`  
+Tool name: `prepare_context`
 Description: Use when tool/browser/API output is large or noisy, or conversation/history is too long, and you need a fixed token budget before the next model call. Returns a compressed packet plus tokens saved and estimated USD saved.
 
 ## Local demo
-```bash
-npm install && npm run demo
-```
+From the repo root: install deps, then run the demo script.
