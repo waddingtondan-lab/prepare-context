@@ -20,7 +20,7 @@ Non-secret defaults live in wrangler.toml [vars]:
 | Var | Default | Notes |
 |-----|---------|--------|
 | X402_PRICE | $0.001 | Exact USDC price string |
-| X402_NETWORK | eip155:84532 | Base Sepolia (testnet) |
+| X402_NETWORK | eip155:8453 | Base mainnet (real USDC) |
 | X402_FACILITATOR_URL | (derived) | See table below |
 | X402_ENABLED | unset | Set to false to disable gating while keeping PAY_TO |
 
@@ -28,10 +28,10 @@ Redeploy after changing secrets/vars: npx wrangler deploy.
 
 ## Testnet vs mainnet
 
-| | Testnet (default) | Mainnet |
+| | Testnet | Mainnet (default now) |
 |--|-------------------|---------|
 | X402_NETWORK | eip155:84532 (Base Sepolia) | eip155:8453 (Base) |
-| Facilitator | https://x402.org/facilitator | https://api.cdp.coinbase.com/platform/v2/x402 |
+| Facilitator | https://x402.org/facilitator | https://facilitator.payai.network |
 | Asset | USDC on Base Sepolia | USDC on Base |
 | Scheme | exact via @x402/evm ExactEvmScheme | same |
 
