@@ -1,0 +1,7 @@
+name = "prepare-context"
+main = "server/src/worker.ts"
+compatibility_date = "2026-09-05"
+compatibility_flags = ["nodejs_compat"]
+
+# Planned custom domain: prepare.plaintools.vip (attach after zone/DNS ready)
+# workers.dev URL is the interim production endpoint after deploy.

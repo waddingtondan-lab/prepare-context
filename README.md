@@ -5,11 +5,12 @@
 | | |
 |--|--|
 | **Brand** | Plain Tools |
-| **API (planned)** | https://prepare.plaintools.vip |
+| **API (Workers)** | `https://prepare-context.<account>.workers.dev` (after wrangler) |
+| **API (planned custom)** | https://prepare.plaintools.vip |
 | **Repo** | https://github.com/waddingtondan-lab/prepare-context |
 | **Local** | `http://127.0.0.1:8787` |
 
-> Product branding is **Plain Tools** / `prepare.plaintools.vip`. Plain org GitHub Pages sites stay marketing-only; this API lives under `waddingtondan-lab`. See **Deploy** below for Render + DNS.
+> Product branding is **Plain Tools** / `prepare.plaintools.vip`. Production target is **Cloudflare Workers**; custom domain attaches when DNS/zone is ready. See **Deploy** below.
 
 ## Why agents call this
 
@@ -65,17 +66,16 @@ CORS is open for local demos. See [docs/API.md](docs/API.md).
 
 ## Deploy
 
-**Render (free web service)** — preferred for production:
+**Cloudflare Workers** — preferred for production:
 
-1. Connect this repo in [Render](https://render.com) (Blueprint uses `render.yaml`), or create a **Web Service** with:
-   - Build: `npm install --include=dev && npm run build`
-   - Start: `npm start`
-   - Health check: `/health`
-   - Env: `NODE_VERSION=20`, `HOST=0.0.0.0` (Render sets `PORT`)
-2. Custom domain: **prepare.plaintools.vip** → CNAME to the service `*.onrender.com` hostname.
-3. Porkbun DNS steps: [docs/DNS.md](docs/DNS.md).
+1. `npm install` then `npx wrangler login` (or set `CLOUDFLARE_API_TOKEN`).
+2. Build core, then publish the Worker: `npm run build -w @prepare-context/core && npx wrangler deploy`.
+3. Interim URL: `https://prepare-context.<your-subdomain>.workers.dev` — verify with `GET /health`.
+4. Custom domain **prepare.plaintools.vip**: attach in Workers Custom Domains when the zone is on Cloudflare. If DNS stays on Porkbun, add only a `prepare` CNAME to the Workers target Cloudflare shows. See [docs/DNS.md](docs/DNS.md).
 
-`Dockerfile` is included as a backup for Railway/Fly (`PORT=8787`, `HOST=0.0.0.0`, exposes 8787).
+Local Node API unchanged: `npm run dev` (Hono + `@hono/node-server` on `:8787`).
+
+**Render / Docker** (optional backups): `render.yaml` and `Dockerfile` still work (`HOST=0.0.0.0`, health `/health`).
 
 ## MCP tool
 
