@@ -57,5 +57,7 @@ MVP uses **characters / 4** (documented heuristic). Optional `js-tiktoken` (`cl1
 ## CORS
 Open (`*`) for local demos.
 
-## Auth
-No API key required for the MVP demo path.
+## Auth / payments
+No API key. When `PAY_TO` is set, unpaid `POST /v1/prepare` returns HTTP 402 (x402). `GET /`, `/health`, `/llms.txt` are always free. See [PAYMENTS.md](PAYMENTS.md).
+
+CORS allows and exposes payment headers: `PAYMENT-REQUIRED`, `PAYMENT-SIGNATURE`, `PAYMENT-RESPONSE`, and `X-PAYMENT*` variants.

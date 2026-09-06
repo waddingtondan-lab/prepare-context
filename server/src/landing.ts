@@ -155,7 +155,7 @@ footer {
 # tool-card: mcp/tool-card.json</pre>
     </div>
 
-    <p class="risk"><strong>Free scrub path</strong> — no API key required for the default heuristic (deterministic scrub + extractive compress).</p>
+    <p class="risk"><strong>Free health &amp; landing</strong> — <code>GET /</code>, <code>/health</code>, <code>/llms.txt</code> stay free. <code>POST /v1/prepare</code> may require <strong>x402</strong> USDC when payments are enabled (see docs/PAYMENTS.md); otherwise no API key for the default heuristic.</p>
     <div class="final-cta">
       <a class="btn" href="#try">Call the API</a>
       <a class="btn btn-ghost" href="https://github.com/waddingtondan-lab/prepare-context/blob/main/docs/AGENTS.md">Agent docs</a>
@@ -234,11 +234,11 @@ footer {
     </details>
     <details>
       <summary>Do I need an API key?</summary>
-      <p>Not for the default heuristic path. Auth/credits may come later.</p>
+      <p>No API key. When x402 is enabled, unpaid <code>POST /v1/prepare</code> returns HTTP 402 with payment instructions.</p>
     </details>
     <details>
       <summary>Pricing?</summary>
-      <p>Free scrub path today. Paid / x402 metering is planned — see docs/PAYMENTS.md.</p>
+      <p>Landing/health/llms are free. Paid prepare uses x402 USDC (default $0.001 on Base Sepolia when <code>PAY_TO</code> is set). See docs/PAYMENTS.md.</p>
     </details>
   </section>
 
@@ -292,7 +292,9 @@ curl -s https://prepare.plaintools.vip/v1/prepare \
   -d '{"raw":"<html>…noisy dump…</html>","budget_tokens":800,"mode":"tool","target_model":"generic"}'
 
 Modes: tool | history | docs
-Auth: none required for default heuristic
+Auth: no API key; when x402 enabled, POST /v1/prepare requires PAYMENT-SIGNATURE (else 402)
+Always free: GET /, GET /health, GET /llms.txt
+Payments: docs/PAYMENTS.md
 Health: GET https://prepare.plaintools.vip/health
 JSON index: GET / with Accept: application/json
 MCP tool: prepare_context (see mcp/tool-card.json)

@@ -21,7 +21,7 @@ Before an expensive model call:
 2. **Compress** into a fixed `budget_tokens`
 3. **Return a receipt**: `tokens_in` / `tokens_out` / `saved_ratio` / `estimated_usd_saved` / `loss_notes`
 
-No API key required for the MVP demo path (deterministic scrub + extractive compress).
+No API key. When x402 is enabled on the live API, unpaid prepare returns HTTP 402; otherwise the heuristic path is free (deterministic scrub + extractive compress).
 
 ## Quick start
 
@@ -89,7 +89,7 @@ Hardcoded estimates for receipts: `claude-sonnet` 3.0 · `gpt-4o` 2.5 · `generi
 
 ## Payments
 
-Not in MVP. Future x402/USDC + API-key credits — see [docs/PAYMENTS.md](docs/PAYMENTS.md).
+Optional **x402** gating on `POST /v1/prepare` when `PAY_TO` is set (default `$0.001` USDC on Base Sepolia). Landing/health/llms stay free. See [docs/PAYMENTS.md](docs/PAYMENTS.md).
 
 ## Docs
 

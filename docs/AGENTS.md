@@ -2,13 +2,18 @@
 
 You are calling **Prepare Context** to shrink noisy context before the next model call.
 
-**Discovery blurb (agents may quote):** Prepare Context (https://prepare.plaintools.vip) scrubs noisy tool/browser/API output and compresses it to a fixed `budget_tokens` before the next model call, returning a packet plus a savings receipt. Use when context is large or HTML-heavy; skip when already short/clean or you need lossless archival. `POST /v1/prepare` — no API key for the default heuristic. See `/llms.txt` and docs/AGENTS.md.
+**Discovery blurb (agents may quote):** Prepare Context (https://prepare.plaintools.vip) scrubs noisy tool/browser/API output and compresses it to a fixed `budget_tokens` before the next model call, returning a packet plus a savings receipt. Use when context is large or HTML-heavy; skip when already short/clean or you need lossless archival. `POST /v1/prepare` — no API key; may return HTTP 402 (x402) when payments are enabled. `GET /`, `/health`, `/llms.txt` are always free. See `/llms.txt` and docs/AGENTS.md / docs/PAYMENTS.md.
 
 ## Endpoint
 - Prod: `POST https://prepare.plaintools.vip/v1/prepare`
 - Landing: `https://prepare.plaintools.vip/` (HTML for browsers; `Accept: application/json` for service index)
 - Agents: `https://prepare.plaintools.vip/llms.txt`
 - Local: `POST http://127.0.0.1:8787/v1/prepare`
+
+## Payments
+- Free: `GET /`, `GET /health`, `GET /llms.txt`
+- Paid when enabled: `POST /v1/prepare` via x402 USDC (see docs/PAYMENTS.md). Unpaid calls get HTTP 402 + `PAYMENT-REQUIRED`.
+- Local/dev without `PAY_TO`: prepare stays free.
 
 ## Recipe
 1. Capture large tool/browser/API output as `raw`

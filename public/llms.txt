@@ -24,7 +24,9 @@ curl -s https://prepare.plaintools.vip/v1/prepare \
   -d '{"raw":"<html>…noisy dump…</html>","budget_tokens":800,"mode":"tool","target_model":"generic"}'
 
 Modes: tool | history | docs
-Auth: none required for default heuristic
+Auth: no API key; when x402 enabled, POST /v1/prepare requires PAYMENT-SIGNATURE (else 402)
+Always free: GET /, GET /health, GET /llms.txt
+Payments: docs/PAYMENTS.md
 Health: GET https://prepare.plaintools.vip/health
 JSON index: GET / with Accept: application/json
 MCP tool: prepare_context (see mcp/tool-card.json)
@@ -32,3 +34,4 @@ MCP tool: prepare_context (see mcp/tool-card.json)
 ## Demo receipt (verified, not a customer claim)
 
 Fat HTML sample: 8932 → 800 tokens (~91% saved, ~$0.016 at generic $2/MTok).
+

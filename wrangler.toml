@@ -3,5 +3,18 @@ main = "server/src/worker.ts"
 compatibility_date = "2026-09-05"
 compatibility_flags = ["nodejs_compat"]
 
-# Planned custom domain: prepare.plaintools.vip (attach after zone/DNS ready)
-# workers.dev URL is the interim production endpoint after deploy.
+# Custom domain: prepare.plaintools.vip
+
+# --- x402 payment gating (POST /v1/prepare only) ---
+# Secret (do not put a real address in vars):
+#   npx wrangler secret put PAY_TO
+# Optional secret/var toggles below.
+#
+# Payments stay OFF until PAY_TO is set. Local/dev without PAY_TO remains free.
+[vars]
+# X402_ENABLED = "true"   # optional; set to "false" to force free even if PAY_TO exists
+X402_PRICE = "$0.001"
+X402_NETWORK = "eip155:84532"   # Base Sepolia testnet; mainnet: eip155:8453
+# X402_FACILITATOR_URL = "https://x402.org/facilitator"
+# Mainnet default facilitator (when X402_NETWORK=eip155:8453):
+#   https://api.cdp.coinbase.com/platform/v2/x402
