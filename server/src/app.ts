@@ -13,6 +13,16 @@ app.use(
   })
 );
 
+app.get("/", (c) =>
+  c.json({
+    ok: true,
+    service: "prepare-context",
+    health: "/health",
+    prepare: "/v1/prepare",
+    public_base_url: "https://prepare.plaintools.vip",
+  })
+);
+
 app.get("/health", (c) =>
   c.json({
     ok: true,
