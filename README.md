@@ -89,7 +89,7 @@ Hardcoded estimates for receipts: `claude-sonnet` 3.0 · `gpt-4o` 2.5 · `generi
 
 ## Payments
 
-Optional **x402** gating on `POST /v1/prepare` when `PAY_TO` is set (default `$0.001` USDC on Base Sepolia). Landing/health/llms stay free. See [docs/PAYMENTS.md](docs/PAYMENTS.md).
+Optional **x402** gating on `POST /v1/prepare` when `PAY_TO` is set (default `$0.01` USDC on Base mainnet). Landing/health/llms stay free. See [docs/PAYMENTS.md](docs/PAYMENTS.md).
 
 ## Docs
 

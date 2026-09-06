@@ -238,7 +238,7 @@ footer {
     </details>
     <details>
       <summary>Pricing?</summary>
-      <p>Landing/health/llms are free. Paid prepare uses x402 USDC (default $0.001 on Base Sepolia when <code>PAY_TO</code> is set). See docs/PAYMENTS.md.</p>
+      <p>Landing/health/llms are free. Paid prepare uses x402 USDC (default $0.01 on Base mainnet when <code>PAY_TO</code> is set). See docs/PAYMENTS.md.</p>
     </details>
   </section>
 

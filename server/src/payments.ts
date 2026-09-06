@@ -12,7 +12,7 @@ import { HTTPFacilitatorClient } from "@x402/core/server";
 import { ExactEvmScheme } from "@x402/evm/exact/server";
 import type { Context, MiddlewareHandler, Next } from "hono";
 
-export const DEFAULT_X402_PRICE = "$0.001";
+export const DEFAULT_X402_PRICE = "$0.01";
 export const DEFAULT_X402_NETWORK = "eip155:84532"; // Base Sepolia
 export const FACILITATOR_TESTNET = "https://x402.org/facilitator";
 export const FACILITATOR_MAINNET = "https://api.cdp.coinbase.com/platform/v2/x402";

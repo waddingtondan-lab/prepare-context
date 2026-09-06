@@ -19,7 +19,7 @@ Non-secret defaults live in wrangler.toml [vars]:
 
 | Var | Default | Notes |
 |-----|---------|--------|
-| X402_PRICE | $0.001 | Exact USDC price string |
+| X402_PRICE | $0.01 | Exact USDC price string |
 | X402_NETWORK | eip155:8453 | Base mainnet (real USDC) |
 | X402_FACILITATOR_URL | (derived) | See table below |
 | X402_ENABLED | unset | Set to false to disable gating while keeping PAY_TO |

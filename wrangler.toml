@@ -13,7 +13,7 @@ compatibility_flags = ["nodejs_compat"]
 # Payments stay OFF until PAY_TO is set. Local/dev without PAY_TO remains free.
 [vars]
 # X402_ENABLED = "true"   # optional; set to "false" to force free even if PAY_TO exists
-X402_PRICE = "$0.001"
+X402_PRICE = "$0.01"
 X402_NETWORK = "eip155:8453"   # Base mainnet (real USDC)
 X402_FACILITATOR_URL = "https://facilitator.payai.network"
 # Mainnet default facilitator (when X402_NETWORK=eip155:8453):
