@@ -50,6 +50,7 @@ Demo loads `examples/fat-sample.html`, scrubs scripts/styles, packs to a budget,
 `GET /health` — liveness + token estimator info.
 `GET /llms.txt` — short machine-readable agent summary.
 `GET /` — HTML landing (browsers) or JSON service index (`Accept: application/json`).
+`GET /openapi.json` — OpenAPI 3.1 for x402scan / agent discovery.
 
 CORS is open for local demos. See [docs/API.md](docs/API.md).
 
@@ -89,7 +90,17 @@ Hardcoded estimates for receipts: `claude-sonnet` 3.0 · `gpt-4o` 2.5 · `generi
 
 ## Payments
 
-Optional **x402** gating on `POST /v1/prepare` when `PAY_TO` is set (default `$0.01` USDC on Base mainnet). Landing/health/llms stay free. See [docs/PAYMENTS.md](docs/PAYMENTS.md).
+Optional **x402** gating on `POST /v1/prepare` when `PAY_TO` is set (default `$0.01` USDC on Base mainnet). Landing/health/llms/openapi stay free. See [docs/PAYMENTS.md](docs/PAYMENTS.md).
+
+## Discovery
+
+| | |
+|--|--|
+| **OpenAPI** | https://prepare.plaintools.vip/openapi.json |
+| **x402scan** | Publish OpenAPI, then register-origin with SIWX (manual — needs wallet auth). Spec: https://www.x402scan.com/discovery/spec |
+| **Bazaar** | `declareDiscoveryExtension` on paid route; CDP indexing needs a CDP facilitator settlement (we use PayAI — see PAYMENTS.md). |
+
+Do not auto-register on x402scan without explicit approval.
 
 ## Docs
 

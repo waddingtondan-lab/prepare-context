@@ -2,6 +2,7 @@ import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { prepare, TOKEN_ESTIMATOR, type PrepareMode, type PrepareRequest } from "@prepare-context/core";
 import { LANDING_HTML, LLMS_TXT, prefersHtml } from "./landing.js";
+import { buildOpenApiDocument, PUBLIC_BASE_URL } from "./openapi.js";
 import {
   readPaymentEnv,
   resolvePaymentConfig,
@@ -26,7 +27,7 @@ app.use(
   })
 );
 
-// x402: only POST /v1/prepare when PAY_TO is set; free routes stay ungated.
+// x402 first: unpaid POST /v1/prepare must 402 before route body validation (400).
 app.use("*", x402PrepareMiddleware());
 
 app.get("/", (c) => {
@@ -39,16 +40,28 @@ app.get("/", (c) => {
     service: "prepare-context",
     health: "/health",
     prepare: "/v1/prepare",
+    openapi: "/openapi.json",
     llms: "/llms.txt",
-    public_base_url: "https://prepare.plaintools.vip",
+    public_base_url: PUBLIC_BASE_URL,
     payments: {
       enabled: payments.enabled,
       protocol: "x402",
       price: payments.enabled ? payments.price : null,
       network: payments.enabled ? payments.network : null,
     },
+    discovery: {
+      openapi: `${PUBLIC_BASE_URL}/openapi.json`,
+      x402scan: "https://www.x402scan.com/discovery/spec",
+      bazaar: "extensions.bazaar on 402 PAYMENT-REQUIRED when payments enabled",
+    },
   });
 });
+
+app.get("/openapi.json", (c) =>
+  c.json(buildOpenApiDocument(), 200, {
+    "Cache-Control": "public, max-age=300",
+  })
+);
 
 app.get("/llms.txt", (c) =>
   c.text(LLMS_TXT, 200, {
@@ -63,12 +76,14 @@ app.get("/health", (c) => {
     service: "prepare-context",
     version: "0.1.0",
     token_estimator: TOKEN_ESTIMATOR,
-    public_base_url: "https://prepare.plaintools.vip",
+    public_base_url: PUBLIC_BASE_URL,
+    openapi: "/openapi.json",
     payments_enabled: payments.enabled,
   });
 });
 
 app.post("/v1/prepare", async (c) => {
+  // Reached only after x402 middleware (or when payments disabled).
   let body: Partial<PrepareRequest>;
   try {
     body = await c.req.json();

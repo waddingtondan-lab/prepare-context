@@ -6,11 +6,24 @@
  *
  * Workers: read c.env per request (bindings are request-scoped).
  * Node: fall back to process.env.
+ *
+ * Middleware runs before the route handler so unpaid probes (empty/minimal body)
+ * receive HTTP 402 before JSON body validation can 400.
  */
 import { paymentMiddleware, x402ResourceServer } from "@x402/hono";
 import { HTTPFacilitatorClient } from "@x402/core/server";
 import { ExactEvmScheme } from "@x402/evm/exact/server";
+import {
+  bazaarResourceServerExtension,
+  declareDiscoveryExtension,
+} from "@x402/extensions/bazaar";
 import type { Context, MiddlewareHandler, Next } from "hono";
+import {
+  PREPARE_INPUT_EXAMPLE,
+  PREPARE_INPUT_JSON_SCHEMA,
+  PREPARE_OUTPUT_EXAMPLE,
+  PREPARE_OUTPUT_JSON_SCHEMA,
+} from "./openapi.js";
 
 export const DEFAULT_X402_PRICE = "$0.01";
 export const DEFAULT_X402_NETWORK = "eip155:84532"; // Base Sepolia
@@ -72,6 +85,24 @@ export function resolvePaymentConfig(raw: PaymentEnv): ResolvedPaymentConfig {
   return { enabled, payTo, price, network, facilitatorUrl };
 }
 
+/** Bazaar discovery payload attached to POST /v1/prepare 402 responses. */
+export function prepareBazaarExtensions() {
+  return {
+    ...declareDiscoveryExtension({
+      bodyType: "json",
+      input: { ...PREPARE_INPUT_EXAMPLE },
+      inputSchema: {
+        properties: PREPARE_INPUT_JSON_SCHEMA.properties,
+        required: [...PREPARE_INPUT_JSON_SCHEMA.required],
+      },
+      output: {
+        example: { ...PREPARE_OUTPUT_EXAMPLE },
+        schema: PREPARE_OUTPUT_JSON_SCHEMA,
+      },
+    }),
+  };
+}
+
 export function buildPrepareRoutes(cfg: ResolvedPaymentConfig) {
   return {
     "POST /v1/prepare": {
@@ -83,6 +114,7 @@ export function buildPrepareRoutes(cfg: ResolvedPaymentConfig) {
       },
       description: "Scrub + compress context to a token budget with a savings receipt",
       mimeType: "application/json",
+      extensions: prepareBazaarExtensions(),
     },
   };
 }
@@ -99,6 +131,9 @@ function cacheKey(cfg: ResolvedPaymentConfig): string {
  * Builds @x402/hono paymentMiddleware with syncFacilitatorOnStart: false, but
  * explicitly await server.initialize() (required in SDK 2.x — false alone never
  * loads facilitator supported kinds and unpaid calls become 500).
+ *
+ * Registers bazaarResourceServerExtension so declareDiscoveryExtension metadata
+ * is enriched onto PAYMENT-REQUIRED / 402 responses for catalog indexing.
  */
 export function x402PrepareMiddleware(): MiddlewareHandler {
   return async (c: Context, next: Next) => {
@@ -112,10 +147,9 @@ export function x402PrepareMiddleware(): MiddlewareHandler {
     if (!middleware) {
       const network = cfg.network as `${string}:${string}`;
       const facilitatorClient = new HTTPFacilitatorClient({ url: cfg.facilitatorUrl });
-      const server = new x402ResourceServer(facilitatorClient).register(
-        network,
-        new ExactEvmScheme()
-      );
+      const server = new x402ResourceServer(facilitatorClient)
+        .register(network, new ExactEvmScheme())
+        .registerExtension(bazaarResourceServerExtension);
       try {
         await server.initialize();
       } catch (err) {

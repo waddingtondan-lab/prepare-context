@@ -101,6 +101,37 @@ describe("POST /v1/prepare payment gating", () => {
     );
   });
 
+
+  it("returns 402 for empty body probe when PAY_TO set", async () => {
+    const res = await app.request(
+      "/v1/prepare",
+      { method: "POST" },
+      {
+        PAY_TO: DUMMY_PAY_TO,
+        X402_PRICE: "$0.001",
+        X402_NETWORK: "eip155:84532",
+      }
+    );
+    assert.equal(res.status, 402);
+  });
+
+  it("returns 402 for minimal JSON {} when PAY_TO set (before body validation)", async () => {
+    const res = await app.request(
+      "/v1/prepare",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: "{}",
+      },
+      {
+        PAY_TO: DUMMY_PAY_TO,
+        X402_PRICE: "$0.001",
+        X402_NETWORK: "eip155:84532",
+      }
+    );
+    assert.equal(res.status, 402);
+  });
+
   it("keeps GET /health free even when PAY_TO set", async () => {
     const res = await app.request("/health", { method: "GET" }, { PAY_TO: DUMMY_PAY_TO });
     assert.equal(res.status, 200);
@@ -109,3 +140,33 @@ describe("POST /v1/prepare payment gating", () => {
     assert.equal(json.payments_enabled, true);
   });
 });
+
+describe("OpenAPI discovery", () => {
+  it("GET /openapi.json returns OpenAPI with prepare + x-payment-info", async () => {
+    const res = await app.request("/openapi.json", { method: "GET" }, {});
+    assert.equal(res.status, 200);
+    const doc = (await res.json()) as {
+      openapi?: string;
+      info?: { contact?: { email?: string }; "x-guidance"?: string };
+      paths?: Record<string, { post?: { "x-payment-info"?: unknown; responses?: Record<string, unknown> } }>;
+      servers?: { url?: string }[];
+    };
+    assert.ok(doc.openapi?.startsWith("3."));
+    assert.equal(doc.info?.contact?.email, "waddington.dan@gmail.com");
+    assert.ok(typeof doc.info?.["x-guidance"] === "string");
+    assert.equal(doc.servers?.[0]?.url, "https://prepare.plaintools.vip");
+    const op = doc.paths?.["/v1/prepare"]?.post;
+    assert.ok(op);
+    assert.ok(op?.["x-payment-info"]);
+    assert.ok(op?.responses?.["402"]);
+    assert.ok(op?.responses?.["200"]);
+  });
+
+  it("GET / JSON index links openapi", async () => {
+    const res = await app.request("/", { method: "GET", headers: { Accept: "application/json" } }, {});
+    assert.equal(res.status, 200);
+    const json = (await res.json()) as { openapi?: string };
+    assert.equal(json.openapi, "/openapi.json");
+  });
+});
+
