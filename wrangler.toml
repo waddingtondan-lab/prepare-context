@@ -6,8 +6,9 @@ compatibility_flags = ["nodejs_compat"]
 # Custom domain: prepare.plaintools.vip
 
 # --- x402 payment gating (POST /v1/prepare only) ---
-# Secret (do not put a real address in vars):
+# Secrets (do not put real values in vars):
 #   npx wrangler secret put PAY_TO
+#   npx wrangler secret put DOGFOOD_API_KEY   # free agent dogfood; send as X-Prepare-Key
 # Optional secret/var toggles below.
 #
 # Payments stay OFF until PAY_TO is set. Local/dev without PAY_TO remains free.

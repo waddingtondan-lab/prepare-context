@@ -39,6 +39,8 @@ export type PaymentEnv = {
   X402_NETWORK?: string;
   X402_FACILITATOR_URL?: string;
   DEFAULT_TARGET_MODEL?: string;
+  /** Free dogfood key for owned agents; empty/unset = no bypass. */
+  DOGFOOD_API_KEY?: string;
 };
 
 export type ResolvedPaymentConfig = {
@@ -65,6 +67,7 @@ export function readPaymentEnv(bindings?: PaymentEnv | null): PaymentEnv {
     X402_NETWORK: b.X402_NETWORK || readProcessEnv("X402_NETWORK"),
     X402_FACILITATOR_URL: b.X402_FACILITATOR_URL || readProcessEnv("X402_FACILITATOR_URL"),
     DEFAULT_TARGET_MODEL: b.DEFAULT_TARGET_MODEL || readProcessEnv("DEFAULT_TARGET_MODEL"),
+    DOGFOOD_API_KEY: b.DOGFOOD_API_KEY || readProcessEnv("DOGFOOD_API_KEY"),
   };
 }
 
@@ -135,9 +138,49 @@ function cacheKey(cfg: ResolvedPaymentConfig): string {
  * Registers bazaarResourceServerExtension so declareDiscoveryExtension metadata
  * is enriched onto PAYMENT-REQUIRED / 402 responses for catalog indexing.
  */
+
+/** Header agents send for free dogfood calls (also accepts Authorization: Bearer). */
+export const DOGFOOD_HEADER = "X-Prepare-Key";
+
+/** Timing-safe string compare for API keys (length mismatch => false). */
+export function safeEqualString(a: string, b: string): boolean {
+  if (a.length !== b.length) return false;
+  let out = 0;
+  for (let i = 0; i < a.length; i++) {
+    out |= a.charCodeAt(i) ^ b.charCodeAt(i);
+  }
+  return out === 0;
+}
+
+/** Extract dogfood key from X-Prepare-Key or Authorization: Bearer. */
+export function extractDogfoodKey(c: Context): string | undefined {
+  const headerKey = c.req.header(DOGFOOD_HEADER)?.trim();
+  if (headerKey) return headerKey;
+  const auth = c.req.header("Authorization")?.trim();
+  if (auth && /^Bearer\s+/i.test(auth)) {
+    const token = auth.replace(/^Bearer\s+/i, "").trim();
+    return token.length > 0 ? token : undefined;
+  }
+  return undefined;
+}
+
+/** True when request presents a valid DOGFOOD_API_KEY (fail closed if secret empty). */
+export function isDogfoodAuthenticated(c: Context, env?: PaymentEnv | null): boolean {
+  const secret = (readPaymentEnv(env).DOGFOOD_API_KEY ?? "").trim();
+  if (!secret) return false;
+  const presented = extractDogfoodKey(c);
+  if (!presented) return false;
+  return safeEqualString(presented, secret);
+}
+
 export function x402PrepareMiddleware(): MiddlewareHandler {
   return async (c: Context, next: Next) => {
-    const cfg = resolvePaymentConfig(readPaymentEnv(c.env as PaymentEnv | undefined));
+    const bindings = c.env as PaymentEnv | undefined;
+    // Dogfood key bypass: owned agents skip x402 when DOGFOOD_API_KEY matches.
+    if (isDogfoodAuthenticated(c, bindings)) {
+      return next();
+    }
+    const cfg = resolvePaymentConfig(readPaymentEnv(bindings));
     if (!cfg.enabled) {
       return next();
     }
@@ -177,4 +220,5 @@ export const X402_CORS_HEADERS = [
   "X-PAYMENT",
   "X-PAYMENT-RESPONSE",
   "X-PAYMENT-REQUIRED",
+  DOGFOOD_HEADER,
 ] as const;

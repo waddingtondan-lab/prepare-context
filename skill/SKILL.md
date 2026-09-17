@@ -26,7 +26,8 @@ repository: https://github.com/waddingtondan-lab/prepare-context
 ## How
 1. Call `POST https://prepare.plaintools.vip/v1/prepare` (or local `http://127.0.0.1:8787/v1/prepare`)
 2. Body: `{ "raw", "budget_tokens", "mode": "tool"|"history"|"docs", "keep"?, "target_model"? }`
-3. Feed `packet` into the next model call; log the receipt fields
+3. Auth: public calls need x402 (`PAYMENT-SIGNATURE`). Owned-agent dogfood: send header `X-Prepare-Key` (or `Authorization: Bearer`) with the `DOGFOOD_API_KEY` / `PREPARE_DOGFOOD_KEY` from your environment — never paste the key into chat or skills.
+4. Feed `packet` into the next model call; log the receipt fields (`billing: "dogfood"` when free key used)
 
 ## MCP
 Tool name: `prepare_context`

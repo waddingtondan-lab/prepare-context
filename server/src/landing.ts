@@ -292,7 +292,7 @@ curl -s https://prepare.plaintools.vip/v1/prepare \
   -d '{"raw":"<html>…noisy dump…</html>","budget_tokens":800,"mode":"tool","target_model":"generic"}'
 
 Modes: tool | history | docs
-Auth: no API key; when x402 enabled, POST /v1/prepare requires PAYMENT-SIGNATURE (else 402)
+Auth: x402 PAYMENT-SIGNATURE when payments enabled; owned agents may use X-Prepare-Key dogfood secret (else 402)
 Always free: GET /, GET /health, GET /llms.txt
 Payments: docs/PAYMENTS.md
 Health: GET https://prepare.plaintools.vip/health

@@ -7,7 +7,9 @@ import {
   readPaymentEnv,
   resolvePaymentConfig,
   x402PrepareMiddleware,
+  isDogfoodAuthenticated,
   X402_CORS_HEADERS,
+  DOGFOOD_HEADER,
   type PaymentEnv,
 } from "./payments.js";
 
@@ -22,7 +24,7 @@ app.use(
   cors({
     origin: "*",
     allowMethods: ["GET", "POST", "OPTIONS"],
-    allowHeaders: ["Content-Type", "Authorization", ...X402_CORS_HEADERS],
+    allowHeaders: ["Content-Type", "Authorization", DOGFOOD_HEADER, ...X402_CORS_HEADERS],
     exposeHeaders: [...X402_CORS_HEADERS],
   })
 );
@@ -116,6 +118,11 @@ app.post("/v1/prepare", async (c) => {
 
   try {
     const result = await prepare(req);
+    if (isDogfoodAuthenticated(c, c.env)) {
+      return c.json({ ...result, billing: "dogfood" }, 200, {
+        "X-Prepare-Billing": "dogfood",
+      });
+    }
     return c.json(result);
   } catch (err) {
     const message = err instanceof Error ? err.message : "prepare failed";

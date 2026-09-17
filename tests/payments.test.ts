@@ -141,6 +141,95 @@ describe("POST /v1/prepare payment gating", () => {
   });
 });
 
+
+describe("dogfood API key bypass", () => {
+  const DOGFOOD = "test-dogfood-key-not-for-prod";
+
+  it("returns 200 with valid X-Prepare-Key when PAY_TO set", async () => {
+    const res = await app.request(
+      "/v1/prepare",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Prepare-Key": DOGFOOD,
+        },
+        body: JSON.stringify(SAMPLE_BODY),
+      },
+      {
+        PAY_TO: DUMMY_PAY_TO,
+        X402_PRICE: "$0.001",
+        X402_NETWORK: "eip155:84532",
+        DOGFOOD_API_KEY: DOGFOOD,
+      }
+    );
+    assert.equal(res.status, 200);
+    const json = (await res.json()) as { packet?: string; billing?: string };
+    assert.ok(typeof json.packet === "string");
+    assert.equal(json.billing, "dogfood");
+    assert.equal(res.headers.get("X-Prepare-Billing") || res.headers.get("x-prepare-billing"), "dogfood");
+  });
+
+  it("returns 200 with Authorization Bearer dogfood key when PAY_TO set", async () => {
+    const res = await app.request(
+      "/v1/prepare",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${DOGFOOD}`,
+        },
+        body: JSON.stringify(SAMPLE_BODY),
+      },
+      {
+        PAY_TO: DUMMY_PAY_TO,
+        DOGFOOD_API_KEY: DOGFOOD,
+        X402_NETWORK: "eip155:84532",
+      }
+    );
+    assert.equal(res.status, 200);
+  });
+
+  it("returns 402 with wrong dogfood key when PAY_TO set", async () => {
+    const res = await app.request(
+      "/v1/prepare",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Prepare-Key": "wrong-key",
+        },
+        body: JSON.stringify(SAMPLE_BODY),
+      },
+      {
+        PAY_TO: DUMMY_PAY_TO,
+        DOGFOOD_API_KEY: DOGFOOD,
+        X402_NETWORK: "eip155:84532",
+      }
+    );
+    assert.equal(res.status, 402);
+  });
+
+  it("returns 402 when DOGFOOD_API_KEY unset even if header sent", async () => {
+    const res = await app.request(
+      "/v1/prepare",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Prepare-Key": DOGFOOD,
+        },
+        body: JSON.stringify(SAMPLE_BODY),
+      },
+      {
+        PAY_TO: DUMMY_PAY_TO,
+        X402_NETWORK: "eip155:84532",
+      }
+    );
+    assert.equal(res.status, 402);
+  });
+});
+
 describe("OpenAPI discovery", () => {
   it("GET /openapi.json returns OpenAPI with prepare + x-payment-info", async () => {
     const res = await app.request("/openapi.json", { method: "GET" }, {});

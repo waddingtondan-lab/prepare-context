@@ -26,6 +26,29 @@ Non-secret defaults live in wrangler.toml [vars]:
 
 Redeploy after changing secrets/vars: npx wrangler deploy.
 
+## Dogfood API key (owned agents)
+
+For Dan's own Grok Bot agents (Content, etc.) that cannot pay x402 yet, set a Worker secret:
+
+```bash
+npx wrangler secret put DOGFOOD_API_KEY
+```
+
+Agents send the same value on each `POST /v1/prepare`:
+
+```bash
+curl -s https://prepare.plaintools.vip/v1/prepare \
+  -H 'Content-Type: application/json' \
+  -H "X-Prepare-Key: $DOGFOOD_API_KEY" \
+  -d '{"raw":"…","budget_tokens":800,"mode":"tool"}'
+```
+
+`Authorization: Bearer <key>` is also accepted. Empty/unset `DOGFOOD_API_KEY` means **no** bypass (fail closed). Wrong keys still get HTTP 402. Successful dogfood responses include `"billing":"dogfood"` and header `X-Prepare-Billing: dogfood`.
+
+Do not put the dogfood key in public docs, skills, or git.
+
+
+
 ## Testnet vs mainnet
 
 | | Testnet | Mainnet (default now) |
